@@ -15,7 +15,7 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import ttk, filedialog
 
-from manifest_report import generate
+from manifest_report import generate, __version__
 
 PAD = 8
 
@@ -23,7 +23,7 @@ PAD = 8
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("AndroidManifest Report Generator")
+        self.title("AndroidManifest Report Generator  v%s" % __version__)
         self.resizable(False, False)
         self.last_report = None
 
