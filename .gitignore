@@ -3,8 +3,11 @@
 # ---------------------------------------------------------------------------
 *.apk
 *.zip
+*.exe
 *.pdf
 *.keystore
+# extracted release-package staging folders
+ManifestReport-*/
 *.jks
 *.p12
 *_keystore*
@@ -23,8 +26,7 @@ com.sec.*/
 # ---------------------------------------------------------------------------
 manifest_report.html
 AndroidManifest_decoded.xml
-# ...but DO keep the bundled example outputs under examples/
-!examples/manifest_report.html
+# ...but DO keep the bundled example files under examples/
 !examples/AndroidManifest_decoded.xml
 
 # ---------------------------------------------------------------------------
