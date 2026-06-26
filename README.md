@@ -5,8 +5,8 @@ into readable XML, and generate a clean, self-contained **HTML report** that
 summarizes the most important fields — app identity, SDK levels, permissions,
 custom permissions, exported components, and content-provider authorities.
 
-Pure Python standard library. No third-party dependencies. Works as a
-command-line tool **or** a simple GUI.
+A single-file GUI app. Pure Python standard library — no third-party
+dependencies.
 
 ---
 
@@ -22,29 +22,21 @@ or browser can't read. This tool decodes it and produces:
 
 ## Usage
 
-### Command line
-```bash
-python manifest_report.py <AndroidManifest.xml | extracted_apk_dir> [output.html]
-```
-Examples:
-```bash
-python manifest_report.py path/to/AndroidManifest.xml
-python manifest_report.py path/to/extracted_apk/        # finds AndroidManifest.xml inside
-python manifest_report.py AndroidManifest.xml report.html
-```
-Both output files are written next to the input (or to the path you give).
-
-### GUI
+Run from source:
 ```bash
 python manifest_gui.py
 ```
-Browse to a manifest, choose where to save the report, click **Generate Report**,
-then **Open report**. The decoded XML is written next to the report. (Tip: rename
-to `manifest_gui.pyw` to launch with no console window on Windows.)
+Browse to a manifest (or an extracted APK folder — it finds `AndroidManifest.xml`
+inside), choose where to save the report, click **Generate Report**, then
+**Open report**. The decoded XML is written next to the report.
+
+Or just download the prebuilt **`ManifestReport.exe`** from the
+[Releases](../../releases) page — no Python required.
 
 > **Notes:**
-> - The GUI imports `manifest_report.py`, so keep both files in the same folder
->   when running from source.
+> - Everything lives in one file (`manifest_gui.py`), so there's nothing else to
+>   copy. Rename it to `manifest_gui.pyw` to launch with no console window on
+>   Windows.
 > - Tkinter is built in on Windows/macOS Python and bundled into the `.exe`.
 >   On some Linux distributions install it separately, e.g.
 >   `sudo apt install python3-tk`.
@@ -62,10 +54,6 @@ application) is included so you can see the output without supplying your own AP
 | [`examples/AndroidManifest_decoded.xml`](examples/AndroidManifest_decoded.xml) | Decoded plain XML |
 | [`examples/manifest_report.html`](examples/manifest_report.html) | Generated report (open in a browser) |
 
-Regenerate it with:
-```bash
-python manifest_report.py examples/AndroidManifest.xml examples/manifest_report.html
-```
 The example exercises every section, including a high-privilege permission, a
 custom permission, and an **implicitly-exported** receiver (an `<intent-filter>`
 with no `android:exported` flag).
@@ -110,8 +98,7 @@ Produces `dist/ManifestReport.exe`, runnable on machines without Python.
 
 | File | Role |
 |---|---|
-| `manifest_report.py` | Core: AXML decoder, parser, HTML renderer; CLI + importable `generate()` |
-| `manifest_gui.py` | Tkinter GUI front-end |
+| `manifest_gui.py` | The whole app: AXML decoder, parser, HTML renderer, and Tkinter GUI |
 | `BUILD.md` | Build / packaging instructions |
 
 ---
