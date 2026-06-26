@@ -3,6 +3,13 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] - 2026-06-26
+
+### Changed
+- **Single-file app.** Folded all logic into `manifest_gui.py` and removed the
+  separate `manifest_report.py`. The tool is now GUI-only — there is no longer a
+  command-line interface.
+
 ## [1.0.0] - 2026-06-26
 
 First release.

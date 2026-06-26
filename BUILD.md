@@ -1,30 +1,21 @@
 # AndroidManifest Report Generator — Build & Run
 
-Three files make up the tool:
-
-| File | Role |
-|------|------|
-| `manifest_report.py` | Core logic: decodes binary AXML, parses it, renders the HTML report. Usable as a CLI **and** imported by the GUI. |
-| `manifest_gui.py` | Simple Tkinter window (browse manifest, choose output, Generate, Open report). |
-| `BUILD.md` | This file. |
+The whole app is a single file, `manifest_gui.py` (AXML decoder, parser, HTML
+renderer, and the Tkinter GUI).
 
 ---
 
 ## Run from source (no build needed)
 
-Requires Python 3 (already installed at `Python312`).
+Requires Python 3.
 
-**GUI:**
 ```
 python manifest_gui.py
 ```
 Tip: rename to `manifest_gui.pyw` and double-click to launch with no console window.
 
-**Command line:**
-```
-python manifest_report.py <AndroidManifest.xml | extracted_apk_dir> [output.html]
-```
-Both produce `manifest_report.html` and `AndroidManifest_decoded.xml` next to the input.
+The report and the decoded `AndroidManifest_decoded.xml` are written to the
+location you choose in the GUI.
 
 ---
 
@@ -37,13 +28,12 @@ This produces a single `ManifestReport.exe` that runs on machines **without** Py
    pip install pyinstaller
    ```
 
-2. Build (run from the folder containing the two .py files):
+2. Build:
    ```
    pyinstaller --onefile --windowed --name ManifestReport manifest_gui.py
    ```
    - `--onefile`  → one self-contained `.exe`
    - `--windowed` → no console window appears behind the GUI
-   - `manifest_report.py` is bundled automatically because `manifest_gui.py` imports it (same folder).
 
 3. Result:
    ```
