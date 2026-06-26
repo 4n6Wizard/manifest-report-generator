@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Synthetic demo manifest for a fictional app. Not a real application.
+     Used to demonstrate the report sections (permissions, custom permissions,
+     exported components, providers, and implicit-export detection). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.notes"
+    android:versionCode="1207"
+    android:versionName="3.2.1"
+    android:compileSdkVersion="34">
+  <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="34" />
+
+  <!-- ordinary permissions -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+  <uses-permission android:name="android.permission.READ_CONTACTS" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+  <!-- a high-privilege / system-only permission (flagged red in the report) -->
+  <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+  <!-- a duplicate, to show that the count de-duplicates -->
+  <uses-permission android:name="android.permission.INTERNET" />
+
+  <!-- a custom permission this app defines -->
+  <permission android:name="com.example.notes.permission.SYNC"
+      android:protectionLevel="0x2" />
+
+  <application
+      android:name="com.example.notes.NotesApplication"
+      android:label="Example Notes"
+      android:allowBackup="false"
+      android:usesCleartextTraffic="false"
+      android:supportsRtl="true">
+
+    <!-- exported launcher activity (guarded by nothing, by design) -->
+    <activity android:name="com.example.notes.ui.MainActivity"
+        android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+
+    <!-- internal activity, not exported -->
+    <activity android:name="com.example.notes.ui.SettingsActivity"
+        android:exported="false" />
+
+    <!-- exported receiver guarded by a signature permission -->
+    <receiver android:name="com.example.notes.sync.SyncReceiver"
+        android:permission="com.example.notes.permission.SYNC"
+        android:exported="true">
+      <intent-filter>
+        <action android:name="com.example.notes.action.SYNC_NOW" />
+      </intent-filter>
+    </receiver>
+
+    <!-- IMPLICITLY exported: has an intent-filter but no android:exported flag -->
+    <receiver android:name="com.example.notes.boot.BootReceiver">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+      </intent-filter>
+    </receiver>
+
+    <!-- foreground service, not exported -->
+    <service android:name="com.example.notes.sync.SyncService"
+        android:exported="false" />
+
+    <!-- exported provider guarded by a permission -->
+    <provider android:name="com.example.notes.data.NotesProvider"
+        android:authorities="com.example.notes.provider.notes"
+        android:permission="com.example.notes.permission.SYNC"
+        android:exported="true" />
+
+    <!-- internal FileProvider with URI grants -->
+    <provider android:name="androidx.core.content.FileProvider"
+        android:authorities="com.example.notes.fileprovider"
+        android:exported="false"
+        android:grantUriPermissions="true" />
+  </application>
+</manifest>

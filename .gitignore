@@ -1,0 +1,53 @@
+# ---------------------------------------------------------------------------
+# Sensitive / do-not-publish data  (APKs, device extractions, keys)
+# ---------------------------------------------------------------------------
+*.apk
+*.zip
+*.pdf
+*.keystore
+*.jks
+*.p12
+*_keystore*
+# Cellebrite / device extractions and any serial-named dumps
+R5CT*/
+R5CT*
+# Extracted APK working folders
+SecureFolder/
+com.samsung.*/
+com.sec.*/
+*_apk/
+*base_*.apk/
+
+# ---------------------------------------------------------------------------
+# Generated output
+# ---------------------------------------------------------------------------
+manifest_report.html
+AndroidManifest_decoded.xml
+# ...but DO keep the bundled example outputs under examples/
+!examples/manifest_report.html
+!examples/AndroidManifest_decoded.xml
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# ---------------------------------------------------------------------------
+# PyInstaller build artifacts
+# ---------------------------------------------------------------------------
+build/
+dist/
+*.spec
+
+# ---------------------------------------------------------------------------
+# Editor / OS
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
