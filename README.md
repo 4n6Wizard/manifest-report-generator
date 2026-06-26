@@ -48,11 +48,16 @@ Or just download the prebuilt **`ManifestReport.exe`** from the
 A synthetic demo manifest (a fictional `com.example.notes` app — not a real
 application) is included so you can see the output without supplying your own APK:
 
+**▶ [View the rendered example report](https://raw.githack.com/4n6Wizard/manifest-report-generator/main/examples/manifest_report.html)**
+
+> GitHub shows `.html` files as source, not as a rendered page. The link above
+> serves it through a preview proxy so you can see the actual styled report.
+
 | File | What it is |
 |---|---|
 | [`examples/AndroidManifest.xml`](examples/AndroidManifest.xml) | Input manifest |
 | [`examples/AndroidManifest_decoded.xml`](examples/AndroidManifest_decoded.xml) | Decoded plain XML |
-| [`examples/manifest_report.html`](examples/manifest_report.html) | Generated report (open in a browser) |
+| [`examples/manifest_report.html`](examples/manifest_report.html) | Generated report (raw HTML — open in a browser, or use the preview link above) |
 
 The example exercises every section, including a high-privilege permission, a
 custom permission, and an **implicitly-exported** receiver (an `<intent-filter>`
