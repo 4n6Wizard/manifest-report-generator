@@ -9,6 +9,15 @@ A single-file GUI app. Pure Python standard library — no third-party
 dependencies.
 
 ---
+## Scope
+
+> **This parser is a triage tool.** It reads and reports on the existing,
+> live records in the HistoryLog database. It does **not** perform any
+> carving, deleted-record recovery, or other advanced recovery on the
+> database. Findings should be corroborated with full forensic analysis
+> where appropriate.
+
+---
 
 ## Why
 
